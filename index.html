@@ -5,28 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مینیوی پیتزای دالیا</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; direction: rtl; }
-        header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1000'); background-size: cover; background-position: center; color: white; text-align: center; padding: 60px 20px; }
-        header h1 { font-size: 3rem; margin: 0; color: #ffce00; }
-        .container { max-width: 1100px; margin: -40px auto 40px; padding: 20px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; text-align: right; }
-        .price-tag { background: #e74c3c; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; float: left; }
-        .btn-order { display: block; width: 100%; padding: 12px; background: #27ae60; color: white; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; font-size: 1rem; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; direction: rtl; }
         
-        /* بخش سبد خرید */
-        .cart-section { background: #fff; max-width: 1100px; margin: 20px auto; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-right: 8px solid #27ae60; }
-        .cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #ddd; }
-        .total-price { font-size: 1.5rem; color: #e74c3c; font-weight: bold; text-align: left; margin-top: 15px; }
+        /* هدر */
+        header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1000'); background-size: cover; background-position: center; color: white; text-align: center; padding: 40px 20px; }
+        header h1 { font-size: 2.5rem; margin: 0; color: #ffce00; }
+
+        .container { max-width: 1100px; margin: auto; padding: 20px; }
+
+        /* استایل دسته‌بندی‌ها (شبیه عکسی که فرستادی) */
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: -30px auto 30px;
+            padding: 10px;
+        }
+
+        .category-item {
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .category-item:hover { transform: scale(1.05); background: #fff4e6; }
         
-        /* استایل بخش یادداشت */
-        .note-area { margin-top: 20px; text-align: right; }
-        .note-area label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
-        .note-area textarea { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 8px; resize: none; font-family: inherit; box-sizing: border-box; }
-        .note-area textarea:focus { border-color: #27ae60; outline: none; }
+        .category-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 8px;
+            border: 2px solid #ffce00;
+        }
+
+        .category-item span { display: block; font-size: 0.9rem; font-weight: bold; }
+
+        /* شبکه منوی غذاها */
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: 0.3s; }
+        .card img { width: 100%; height: 180px; object-fit: cover; }
+        .card-body { padding: 15px; text-align: right; }
+        .price-tag { background: #e74c3c; color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; float: left; }
+        .btn-order { display: block; width: 100%; padding: 10px; background: #27ae60; color: white; text-align: center; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; margin-top: 10px; }
+
+        /* سبد خرید */
+        .cart-section { background: #fff; margin-top: 30px; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-right: 8px solid #27ae60; }
+        .cart-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #ddd; }
+        .total-price { font-size: 1.4rem; color: #e74c3c; font-weight: bold; margin-top: 15px; }
+        .note-area textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin-top: 10px; font-family: inherit; }
 
         footer { background: #2d3436; color: white; text-align: center; padding: 20px; margin-top: 40px; }
     </style>
@@ -35,53 +68,69 @@
 
 <header>
     <h1>🍕 پیتزای دالیا </h1>
-    <p>چێژی ڕاستی لە پیتزای دالیا وەرگرە لەسەر پردی قەرزاران</p>
+    <p>چێژی ڕاستی لە پیتزای دالیا - پردی قەرزاران</p>
 </header>
 
 <div class="container">
+    
+        <div class="category-container">
+        <a href="#" class="category-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" alt="پیتزا">
+            <span>بەشی پیتزا</span>
+        </a>
+        <a href="#" class="category-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/706/706918.png" alt="برگر">
+            <span>بەشی بەرگر</span>
+        </a>
+        <a href="#" class="category-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046786.png" alt="کنتاکی">
+            <span>بەشی کنتاکی</span>
+        </a>
+        <a href="#" class="category-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/2515/2515183.png" alt="فنگر">
+            <span>بەشی فنگر</span>
+        </a>
+        <a href="#" class="category-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/2405/2405479.png" alt="خواردنەوە">
+            <span>خواردنەوەکان</span>
+        </a>
+    </div>
+
+
     <div class="menu-grid">
         <div class="card">
             <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400" alt="پیتزا">
             <div class="card-body">
                 <span class="price-tag">2,000 دینار</span>
                 <h3 class="card-title">پیتزای بچوکی مشکەل</h3>
-                <p class="card-text">تەماتە، بیبەر، زەیتون، مریشک، پەنیر.</p>
-                <button class="btn-order" onclick="addToCart('پیتزای بچوک', 2000)">داواکاری</button>
+                <p>تەماتە، بیبەر، زەیتون، مریشک، پەنیر.</p>
+                <button class="btn-order" onclick="addToCart('پیتزای بچوکی مشکەل', 2000)">داواکاری</button>
             </div>
         </div>
-
         <div class="card">
             <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400" alt="پیتزا">
             <div class="card-body">
                 <span class="price-tag">2,000 دینار</span>
                 <h3 class="card-title">پیتزای بچوکی سادە</h3>
-                <p class="card-text">بەس مریشک و پەنیر</p>
-                <button class="btn-order" onclick="addToCart('پیتزای سادە', 2000)">داواکاری</button>
+                <p>بەس مریشک و پەنیر</p>
+                <button class="btn-order" onclick="addToCart('پیتزای بچوکی سادە', 2000)">داواکاری</button>
             </div>
         </div>
     </div>
 
     <div class="cart-section">
         <h3>🛒 لیستی داواکارییەکان</h3>
-        <div id="cart-items">
-            <p style="color: #888;">هیچ داواکارییەک نییە...</p>
-        </div>
-        
+        <div id="cart-items"><p style="color:#888;">هیچ داواکارییەک نییە...</p></div>
         <div class="total-price">کۆ گشتی: <span id="total-amount">0</span> دینار</div>
-
         <div class="note-area">
-            <label for="customer-note">📝 تێبینی (داواکاری):</label>
-            <textarea id="customer-note" rows="3" placeholder="بۆ نموونە: بێ پیاز، یان زۆر برژاو بێت..."></textarea>
+            <textarea id="customer-note" rows="2" placeholder="📝 تێبینی (مثلاً: بێ پیاز...)"></textarea>
         </div>
-
-        <button class="btn-order" style="margin-top: 20px; background: #25D366;" onclick="sendToWhatsApp()">ناردن بۆ واتس ئەپ (ناردنی داواکاری)</button>
-        <button class="btn-order" style="background: #ccc; margin-top: 10px; color: #333;" onclick="clearCart()">سڕینەوەی لیست</button>
+        <button class="btn-order" style="background:#25D366; margin-top:15px;" onclick="sendToWhatsApp()">ناردن بۆ واتس ئەپ</button>
+        <button class="btn-order" style="background:#bbb; margin-top:8px;" onclick="clearCart()">سڕینەوەی لیست</button>
     </div>
 </div>
 
-<footer>
-    <p>دروستکراو بۆ پیتزای دالیا | ۲۰۲۶</p>
-</footer>
+<footer><p>دروستکراو بۆ پیتزای دالیا | ۲۰۲۶</p></footer>
 
 <script>
     let cart = [];
@@ -94,50 +143,27 @@
     }
 
     function clearCart() {
-        cart = [];
-        total = 0;
+        cart = []; total = 0;
         document.getElementById('customer-note').value = '';
         updateUI();
     }
 
     function updateUI() {
         const cartDiv = document.getElementById('cart-items');
-        const totalSpan = document.getElementById('total-amount');
-        
         if (cart.length === 0) {
-            cartDiv.innerHTML = '<p style="color: #888;">هیچ داواکارییەک نییە...</p>';
+            cartDiv.innerHTML = '<p style="color:#888;">هیچ داواکارییەک نییە...</p>';
         } else {
-            cartDiv.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <span>${item.name}</span>
-                    <span>${item.price.toLocaleString()} دینار</span>
-                </div>
-            `).join('');
+            cartDiv.innerHTML = cart.map(item => `<div class="cart-item"><span>${item.name}</span><span>${item.price.toLocaleString()} دینار</span></div>`).join('');
         }
-        totalSpan.innerText = total.toLocaleString();
+        document.getElementById('total-amount').innerText = total.toLocaleString();
     }
 
     function sendToWhatsApp() {
-        if (cart.length === 0) {
-            alert("تکایه سەرەتا پیتزا هەڵبژێرە!");
-            return;
-        }
-
-        let phoneNumber = "............."; // تکایە ژمارە مۆبایلی خۆتان لێرە بنوسن
+        if (cart.length === 0) return alert("تکایه سەرەتا غذا هەڵبژێرە!");
+        let phoneNumber = "964XXXXXXXXXX"; // شماره خود را اینجا وارد کنید
         let note = document.getElementById('customer-note').value;
-        let message = "سڵاو، داواکاری نوێ:\n\n";
-        
-        cart.forEach((item, index) => {
-            message += `${index + 1}. ${item.name} - ${item.price} دینار\n`;
-        });
-
-        message += `\n💰 کۆ گشتی: ${total} دینار`;
-        if (note) {
-            message += `\n\n📝 تێبینی: ${note}`;
-        }
-
-        let encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        let message = `سڵاو، داواکاری نوێ:\n` + cart.map((item, i) => `${i+1}. ${item.name}`).join('\n') + `\n\n💰 کۆ گشتی: ${total} دینار\n📝 تێبینی: ${note}`;
+        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
     }
 </script>
 
